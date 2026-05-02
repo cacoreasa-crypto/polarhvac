@@ -111,6 +111,53 @@ body {
   .mobile-call-fab {
     display: inline-flex;
   }
+
+  /* Space above floating call button + home indicator */
+  #home {
+    padding-bottom: max(72px, env(safe-area-inset-bottom));
+  }
+
+  /* Hero: single column on mobile — logo centered, readable size */
+  #home .hero-inner {
+    grid-template-columns: 1fr !important;
+    align-items: start !important;
+    gap: 28px !important;
+    padding: 96px 20px 140px !important;
+    padding-top: max(96px, calc(env(safe-area-inset-top) + 76px)) !important;
+  }
+  #home .hero-copy {
+    order: 1;
+    max-width: 100%;
+  }
+  #home .hero-visual {
+    order: 2;
+    width: 100%;
+    min-height: 0;
+    padding: 0 8px;
+  }
+  #home .hero-logo-ring {
+    width: min(88vw, 340px) !important;
+    height: min(88vw, 340px) !important;
+  }
+  #home .hero-logo-img {
+    width: min(78vw, 300px) !important;
+    max-width: min(78vw, 300px) !important;
+    height: auto !important;
+  }
+  #home .hero-stats {
+    position: relative !important;
+    left: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px 32px !important;
+    margin-top: 8px;
+    padding: 0 16px 28px;
+    width: 100%;
+    max-width: 1200px;
+  }
+
   #why .why-polar-panel-grid {
     grid-template-columns: 1fr !important;
     gap: 28px !important;

@@ -107,10 +107,13 @@ export default function Hero() {
       </div>
 
       {/* Main content */}
-      <div style={{ position: 'relative', zIndex: 2, display: 'grid', gridTemplateColumns: '1fr 1fr', alignItems: 'center', gap: '40px', maxWidth: '1200px', width: '100%', padding: '110px 48px 140px' }}>
+      <div
+        className="hero-inner"
+        style={{ position: 'relative', zIndex: 2, display: 'grid', gridTemplateColumns: '1fr 1fr', alignItems: 'center', gap: '40px', maxWidth: '1200px', width: '100%', padding: '110px 48px 140px' }}
+      >
 
         {/* Text */}
-        <div>
+        <div className="hero-copy">
           <motion.div {...fadeUp(0)} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(26,111,212,.12)', border: '1px solid rgba(0,212,255,.25)', borderRadius: '100px', padding: '6px 16px', fontFamily: 'var(--fh)', fontSize: '12px', fontWeight: 600, color: 'var(--ice)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '20px' }}>
             <span className="dot-blink" style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--ice)', display: 'block' }} />
             Serving Bowie, MD &amp; DMV Area
@@ -147,23 +150,23 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Logo side */}
-        <motion.div {...scaleIn(0.2)} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
-          <div className="ring-spin" style={{ position: 'absolute', width: '440px', height: '440px', borderRadius: '50%', border: '1px solid rgba(0,212,255,.12)' }} />
+        {/* Logo side — full width on mobile so mark stays legible */}
+        <motion.div {...scaleIn(0.2)} className="hero-visual" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+          <div className="ring-spin hero-logo-ring" style={{ position: 'absolute', width: '440px', height: '440px', borderRadius: '50%', border: '1px solid rgba(0,212,255,.12)' }} />
           <Image
             src="/LogoPolar.png"
             alt="Polar HVAC Services"
             width={370}
             height={370}
-            className="logo-float"
-            style={{ filter: 'drop-shadow(0 20px 60px rgba(0,212,255,.28)) drop-shadow(0 0 80px rgba(244,124,32,.18))', maxWidth: '85vw' }}
+            className="logo-float hero-logo-img"
+            style={{ width: 'auto', height: 'auto', filter: 'drop-shadow(0 20px 60px rgba(0,212,255,.28)) drop-shadow(0 0 80px rgba(244,124,32,.18))', maxWidth: '85vw' }}
             priority
           />
         </motion.div>
       </div>
 
       {/* Stats bar */}
-      <motion.div {...fadeUp(0.6)} style={{ position: 'absolute', bottom: '36px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '44px', zIndex: 2 }}>
+      <motion.div {...fadeUp(0.6)} className="hero-stats" style={{ position: 'absolute', bottom: '36px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '44px', zIndex: 2 }}>
         {Stats.map((s, i) => (
           <div key={i} style={{ textAlign: 'center' }}>
             <div style={{ fontFamily: 'var(--fh)', fontSize: '34px', fontWeight: 900, color: 'var(--ice)', lineHeight: 1 }}>
