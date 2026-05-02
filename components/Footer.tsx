@@ -18,7 +18,13 @@ export default function Footer() {
 
         {/* Brand */}
         <div>
-          <Image src="/logo.svg" alt="Polar HVAC Services" width={88} height={88} style={{ marginBottom: '18px', display: 'block' }} />
+          <Image
+            src="/LogoPolar.png"
+            alt="Polar HVAC Services"
+            width={120}
+            height={120}
+            style={{ width: 'auto', height: 'auto', maxWidth: 'min(200px, 42vw)', maxHeight: '100px', marginBottom: '18px', display: 'block', objectFit: 'contain' }}
+          />
           <p style={{ fontSize: '13px', color: 'var(--dim)', lineHeight: 1.7, maxWidth: '270px' }}>
             Polar HVAC Services LLC is your trusted heating and cooling partner in Bowie, Maryland and across the DMV area. Licensed, insured, and committed to your comfort year-round.
           </p>
@@ -91,12 +97,30 @@ export default function Footer() {
       <div style={{ height: '3px', background: 'linear-gradient(90deg,var(--blue),var(--ice),var(--orange),var(--fire))', margin: '0 48px' }} />
 
       {/* Bottom bar */}
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '22px 48px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '12px', color: 'rgba(168,184,216,.45)' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '22px 48px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '14px', fontSize: '12px', color: 'rgba(168,184,216,.45)' }}>
         <div>© 2026 <strong style={{ color: 'var(--ice)' }}>Polar HVAC Services LLC</strong> — Bowie, Maryland</div>
         <div style={{ display: 'flex', gap: '20px' }}>
           <Link href="#" style={{ color: 'rgba(168,184,216,.45)', textDecoration: 'none' }}>Privacy Policy</Link>
           <Link href="#" style={{ color: 'rgba(168,184,216,.45)', textDecoration: 'none' }}>Terms of Service</Link>
         </div>
+      </div>
+
+      <div
+        style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: '0 48px 28px',
+          textAlign: 'center',
+          fontSize: '12px',
+          color: 'rgba(168,184,216,.55)',
+          lineHeight: 1.6,
+        }}
+      >
+        Designed and developed by{' '}
+        <a href="https://liscatech.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ice)', textDecoration: 'none', fontWeight: 600 }}>
+          LiscaTech
+        </a>
+        {' '}by Almy Beco
       </div>
         </>
       </FadeIn>

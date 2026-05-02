@@ -1,6 +1,6 @@
 'use client'
 // components/Hero.tsx
-import { useEffect, useRef } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Stats } from '@/lib/data'
@@ -16,6 +16,88 @@ const scaleIn = (delay = 0) => ({
   animate: { opacity: 1, scale: 1 },
   transition: { duration: 1, delay, ease: [0.22, 1, 0.36, 1] as const },
 })
+
+const HERO_HEADLINE_SEGMENTS = [
+  { text: 'Expert', nl: true as const, color: 'var(--white)' },
+  { text: 'Heating &', nl: true as const, color: 'var(--orange)' },
+  { text: 'Cooling', nl: true as const, color: 'var(--ice)' },
+  { text: 'Solutions', nl: false as const, color: 'var(--white)' },
+] as const
+
+const TYPE_MS = 40
+const PAUSE_MS = 220
+
+function HeroTypewriterH1() {
+  const [segIndex, setSegIndex] = useState(0)
+  const [charIndex, setCharIndex] = useState(0)
+
+  useEffect(() => {
+    const seg = HERO_HEADLINE_SEGMENTS[segIndex]
+    if (!seg) return
+
+    if (charIndex < seg.text.length) {
+      const t = window.setTimeout(() => setCharIndex(c => c + 1), TYPE_MS)
+      return () => clearTimeout(t)
+    }
+
+    if (segIndex < HERO_HEADLINE_SEGMENTS.length - 1) {
+      const t = window.setTimeout(() => {
+        setSegIndex(s => s + 1)
+        setCharIndex(0)
+      }, PAUSE_MS)
+      return () => clearTimeout(t)
+    }
+  }, [segIndex, charIndex])
+
+  const done =
+    segIndex === HERO_HEADLINE_SEGMENTS.length - 1 &&
+    charIndex >= HERO_HEADLINE_SEGMENTS[HERO_HEADLINE_SEGMENTS.length - 1].text.length
+
+  const cur = HERO_HEADLINE_SEGMENTS[segIndex]
+  const showCursor = Boolean(cur && !done && charIndex < cur.text.length)
+
+  return (
+    <motion.h1
+      className="hero-h1"
+      initial={{ opacity: 0, y: 28 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.75, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+      style={{
+        fontFamily: 'var(--fh)',
+        fontSize: 'clamp(52px,6.5vw,92px)',
+        fontWeight: 900,
+        lineHeight: 0.95,
+        textTransform: 'uppercase',
+        letterSpacing: '-1px',
+      }}
+    >
+      <span className="sr-only">Expert Heating &amp; Cooling Solutions</span>
+      <span aria-hidden>
+        {HERO_HEADLINE_SEGMENTS.map((seg, i) => {
+          if (i < segIndex) {
+            return (
+              <Fragment key={seg.text}>
+                <span style={{ color: seg.color }}>{seg.text}</span>
+                {seg.nl ? <br /> : null}
+              </Fragment>
+            )
+          }
+          if (i === segIndex) {
+            const lineDone = charIndex >= seg.text.length
+            return (
+              <Fragment key={`${seg.text}-active`}>
+                <span style={{ color: seg.color }}>{seg.text.slice(0, charIndex)}</span>
+                {showCursor ? <span className="hero-type-cursor" /> : null}
+                {seg.nl && lineDone ? <br /> : null}
+              </Fragment>
+            )
+          }
+          return null
+        })}
+      </span>
+    </motion.h1>
+  )
+}
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -81,7 +163,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section id="home" style={{ minHeight: '100vh', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+    <section id="home" className="hero-section" style={{ minHeight: '100vh', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
       {/* Backgrounds */}
       <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 80% 80% at 30% 40%,#162a56 0%,#0a1628 65%)' }} />
       <div className="hex-bg" />
@@ -127,33 +209,47 @@ export default function Hero() {
 
         <div className="hero-text-group">
           <div className="hero-intro">
-            <motion.div {...fadeUp(0)} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(26,111,212,.12)', border: '1px solid rgba(0,212,255,.25)', borderRadius: '100px', padding: '6px 16px', fontFamily: 'var(--fh)', fontSize: '12px', fontWeight: 600, color: 'var(--ice)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '20px' }}>
+            <motion.div {...fadeUp(0)} className="hero-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(26,111,212,.12)', border: '1px solid rgba(0,212,255,.25)', borderRadius: '100px', padding: '6px 16px', fontFamily: 'var(--fh)', fontSize: '12px', fontWeight: 600, color: 'var(--ice)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '20px' }}>
               <span className="dot-blink" style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--ice)', display: 'block' }} />
               Serving Bowie, MD &amp; DMV Area
             </motion.div>
 
-            <motion.h1 {...fadeUp(0.1)} style={{ fontFamily: 'var(--fh)', fontSize: 'clamp(52px,6.5vw,92px)', fontWeight: 900, lineHeight: 0.95, textTransform: 'uppercase', letterSpacing: '-1px' }}>
-              Expert<br />
-              <span style={{ color: 'var(--ice)' }}>Heating &amp;</span><br />
-              <span style={{ color: 'var(--orange)' }}>Cooling</span><br />
-              Solutions
-            </motion.h1>
+            <HeroTypewriterH1 />
 
-            <motion.p {...fadeUp(0.2)} style={{ marginTop: '18px', fontSize: '17px', color: 'var(--dim)', lineHeight: 1.65, maxWidth: '480px' }}>
+            <motion.p {...fadeUp(0.2)} className="hero-sub" style={{ marginTop: '18px', fontSize: '17px', color: 'var(--dim)', lineHeight: 1.65, maxWidth: '480px' }}>
               Professional HVAC installation, repair &amp; maintenance for residential &amp; commercial properties. Licensed, insured &amp; trusted across Maryland, Virginia &amp; DC.
             </motion.p>
           </div>
 
           <motion.div {...fadeUp(0.3)} className="hero-cta" style={{ display: 'flex', alignItems: 'center', gap: '14px', marginTop: '32px', flexWrap: 'wrap' }}>
-            <a href="#contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: 'linear-gradient(135deg,var(--orange),var(--fire))', color: '#fff', padding: '15px 30px', borderRadius: '4px', fontFamily: 'var(--fh)', fontSize: '15px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', textDecoration: 'none', boxShadow: '0 4px 20px rgba(244,124,32,.35)' }}>
+            <a href="#contact" className="hero-cta-primary" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px', background: 'linear-gradient(135deg,var(--orange),var(--fire))', color: '#fff', padding: '15px 30px', borderRadius: '4px', fontFamily: 'var(--fh)', fontSize: '15px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', textDecoration: 'none', boxShadow: '0 4px 20px rgba(244,124,32,.35)' }}>
               Get Free Estimate
             </a>
-            <a href="#services" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', border: '2px solid rgba(0,212,255,.4)', color: 'var(--ice)', padding: '13px 28px', borderRadius: '4px', fontFamily: 'var(--fh)', fontSize: '15px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', textDecoration: 'none' }}>
+            <a href="#services" className="hero-cta-secondary" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px', border: '2px solid rgba(0,212,255,.4)', color: 'var(--ice)', padding: '13px 28px', borderRadius: '4px', fontFamily: 'var(--fh)', fontSize: '15px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', textDecoration: 'none' }}>
               Our Services →
             </a>
           </motion.div>
 
-          <motion.div {...fadeUp(0.4)} className="hero-phone" style={{ display: 'flex', alignItems: 'center', gap: '14px', marginTop: '24px' }}>
+          <motion.div {...fadeUp(0.42)} className="hero-stats" style={{ zIndex: 2 }}>
+            {Stats.map((s, i) => (
+              <motion.div
+                key={i}
+                className="hero-stat-card"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.55, delay: 0.08 * i, ease: [0.22, 1, 0.36, 1] }}
+                style={{ textAlign: 'center' }}
+              >
+                <div style={{ fontFamily: 'var(--fh)', fontSize: '34px', fontWeight: 900, color: 'var(--ice)', lineHeight: 1 }}>
+                  {s.value}{s.suffix}
+                </div>
+                <div className="hero-stat-label" style={{ fontSize: '10px', color: 'var(--dim)', letterSpacing: '2px', textTransform: 'uppercase', marginTop: '4px' }}>{s.label}</div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div {...fadeUp(0.5)} className="hero-phone" style={{ display: 'flex', alignItems: 'center', gap: '14px', marginTop: '24px' }}>
             <div className="phone-ring" style={{ width: '44px', height: '44px', minWidth: '44px', borderRadius: '50%', background: 'linear-gradient(135deg,var(--orange),var(--fire))', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" /></svg>
             </div>
@@ -164,18 +260,6 @@ export default function Hero() {
           </motion.div>
         </div>
       </div>
-
-      {/* Stats — last in reading order on mobile; desktop stays bottom-centered */}
-      <motion.div {...fadeUp(0.6)} className="hero-stats" style={{ position: 'absolute', bottom: '36px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '44px', zIndex: 2 }}>
-        {Stats.map((s, i) => (
-          <div key={i} style={{ textAlign: 'center' }}>
-            <div style={{ fontFamily: 'var(--fh)', fontSize: '34px', fontWeight: 900, color: 'var(--ice)', lineHeight: 1 }}>
-              {s.value}{s.suffix}
-            </div>
-            <div style={{ fontSize: '10px', color: 'var(--dim)', letterSpacing: '2px', textTransform: 'uppercase', marginTop: '4px' }}>{s.label}</div>
-          </div>
-        ))}
-      </motion.div>
     </section>
   )
 }
