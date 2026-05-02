@@ -86,6 +86,25 @@ body {
 }
 .dot-blink { animation: blink 1.5s ease-in-out infinite; }
 
+/* Hero layout: desktop = copy | visual; mobile = visual then copy (logo → headline → CTAs → phone) */
+#home .hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "copy visual";
+  align-items: center;
+  gap: 40px;
+  padding: 110px 48px 140px;
+}
+#home .hero-text-group {
+  grid-area: copy;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+#home .hero-visual {
+  grid-area: visual;
+}
+
 /* Mobile floating call button */
 .mobile-call-fab {
   position: fixed;
@@ -117,20 +136,22 @@ body {
     padding-bottom: max(72px, env(safe-area-inset-bottom));
   }
 
-  /* Hero: single column on mobile — logo centered, readable size */
+  /* Hero: logo first, then copy (text → buttons → phone), stats follow in DOM */
   #home .hero-inner {
     grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "visual"
+      "copy" !important;
     align-items: start !important;
     gap: 28px !important;
-    padding: 96px 20px 140px !important;
+    padding: 96px 20px 32px !important;
     padding-top: max(96px, calc(env(safe-area-inset-top) + 76px)) !important;
   }
-  #home .hero-copy {
-    order: 1;
+  #home .hero-text-group {
+    width: 100%;
     max-width: 100%;
   }
   #home .hero-visual {
-    order: 2;
     width: 100%;
     min-height: 0;
     padding: 0 8px;

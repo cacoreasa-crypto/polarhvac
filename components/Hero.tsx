@@ -106,52 +106,13 @@ export default function Hero() {
         </svg>
       </div>
 
-      {/* Main content */}
+      {/* Main content — desktop: copy | visual. Mobile: visual, then copy (intro → CTAs → phone), then stats below */}
       <div
         className="hero-inner"
-        style={{ position: 'relative', zIndex: 2, display: 'grid', gridTemplateColumns: '1fr 1fr', alignItems: 'center', gap: '40px', maxWidth: '1200px', width: '100%', padding: '110px 48px 140px' }}
+        style={{ position: 'relative', zIndex: 2, maxWidth: '1200px', width: '100%' }}
       >
-
-        {/* Text */}
-        <div className="hero-copy">
-          <motion.div {...fadeUp(0)} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(26,111,212,.12)', border: '1px solid rgba(0,212,255,.25)', borderRadius: '100px', padding: '6px 16px', fontFamily: 'var(--fh)', fontSize: '12px', fontWeight: 600, color: 'var(--ice)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '20px' }}>
-            <span className="dot-blink" style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--ice)', display: 'block' }} />
-            Serving Bowie, MD &amp; DMV Area
-          </motion.div>
-
-          <motion.h1 {...fadeUp(0.1)} style={{ fontFamily: 'var(--fh)', fontSize: 'clamp(52px,6.5vw,92px)', fontWeight: 900, lineHeight: 0.95, textTransform: 'uppercase', letterSpacing: '-1px' }}>
-            Expert<br />
-            <span style={{ color: 'var(--ice)' }}>Heating &amp;</span><br />
-            <span style={{ color: 'var(--orange)' }}>Cooling</span><br />
-            Solutions
-          </motion.h1>
-
-          <motion.p {...fadeUp(0.2)} style={{ marginTop: '18px', fontSize: '17px', color: 'var(--dim)', lineHeight: 1.65, maxWidth: '480px' }}>
-            Professional HVAC installation, repair &amp; maintenance for residential &amp; commercial properties. Licensed, insured &amp; trusted across Maryland, Virginia &amp; DC.
-          </motion.p>
-
-          <motion.div {...fadeUp(0.3)} style={{ display: 'flex', alignItems: 'center', gap: '14px', marginTop: '32px', flexWrap: 'wrap' }}>
-            <a href="#contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: 'linear-gradient(135deg,var(--orange),var(--fire))', color: '#fff', padding: '15px 30px', borderRadius: '4px', fontFamily: 'var(--fh)', fontSize: '15px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', textDecoration: 'none', boxShadow: '0 4px 20px rgba(244,124,32,.35)' }}>
-              Get Free Estimate
-            </a>
-            <a href="#services" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', border: '2px solid rgba(0,212,255,.4)', color: 'var(--ice)', padding: '13px 28px', borderRadius: '4px', fontFamily: 'var(--fh)', fontSize: '15px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', textDecoration: 'none' }}>
-              Our Services →
-            </a>
-          </motion.div>
-
-          <motion.div {...fadeUp(0.4)} style={{ display: 'flex', alignItems: 'center', gap: '14px', marginTop: '24px' }}>
-            <div className="phone-ring" style={{ width: '44px', height: '44px', minWidth: '44px', borderRadius: '50%', background: 'linear-gradient(135deg,var(--orange),var(--fire))', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" /></svg>
-            </div>
-            <div>
-              <small style={{ display: 'block', fontSize: '10px', color: 'var(--dim)', letterSpacing: '2px', textTransform: 'uppercase', fontFamily: 'var(--fh)' }}>Call us 24/7</small>
-              <a href="tel:3015262926" style={{ fontFamily: 'var(--fh)', fontSize: '28px', fontWeight: 800, color: 'var(--white)', textDecoration: 'none', letterSpacing: '1px' }}>301 526 2926</a>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Logo side — full width on mobile so mark stays legible */}
-        <motion.div {...scaleIn(0.2)} className="hero-visual" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+        {/* Logo — grid-area: visual; first row on mobile */}
+        <motion.div {...scaleIn(0.05)} className="hero-visual" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
           <div className="ring-spin hero-logo-ring" style={{ position: 'absolute', width: '440px', height: '440px', borderRadius: '50%', border: '1px solid rgba(0,212,255,.12)' }} />
           <Image
             src="/LogoPolar.png"
@@ -163,9 +124,48 @@ export default function Hero() {
             priority
           />
         </motion.div>
+
+        <div className="hero-text-group">
+          <div className="hero-intro">
+            <motion.div {...fadeUp(0)} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(26,111,212,.12)', border: '1px solid rgba(0,212,255,.25)', borderRadius: '100px', padding: '6px 16px', fontFamily: 'var(--fh)', fontSize: '12px', fontWeight: 600, color: 'var(--ice)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '20px' }}>
+              <span className="dot-blink" style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--ice)', display: 'block' }} />
+              Serving Bowie, MD &amp; DMV Area
+            </motion.div>
+
+            <motion.h1 {...fadeUp(0.1)} style={{ fontFamily: 'var(--fh)', fontSize: 'clamp(52px,6.5vw,92px)', fontWeight: 900, lineHeight: 0.95, textTransform: 'uppercase', letterSpacing: '-1px' }}>
+              Expert<br />
+              <span style={{ color: 'var(--ice)' }}>Heating &amp;</span><br />
+              <span style={{ color: 'var(--orange)' }}>Cooling</span><br />
+              Solutions
+            </motion.h1>
+
+            <motion.p {...fadeUp(0.2)} style={{ marginTop: '18px', fontSize: '17px', color: 'var(--dim)', lineHeight: 1.65, maxWidth: '480px' }}>
+              Professional HVAC installation, repair &amp; maintenance for residential &amp; commercial properties. Licensed, insured &amp; trusted across Maryland, Virginia &amp; DC.
+            </motion.p>
+          </div>
+
+          <motion.div {...fadeUp(0.3)} className="hero-cta" style={{ display: 'flex', alignItems: 'center', gap: '14px', marginTop: '32px', flexWrap: 'wrap' }}>
+            <a href="#contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: 'linear-gradient(135deg,var(--orange),var(--fire))', color: '#fff', padding: '15px 30px', borderRadius: '4px', fontFamily: 'var(--fh)', fontSize: '15px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', textDecoration: 'none', boxShadow: '0 4px 20px rgba(244,124,32,.35)' }}>
+              Get Free Estimate
+            </a>
+            <a href="#services" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', border: '2px solid rgba(0,212,255,.4)', color: 'var(--ice)', padding: '13px 28px', borderRadius: '4px', fontFamily: 'var(--fh)', fontSize: '15px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', textDecoration: 'none' }}>
+              Our Services →
+            </a>
+          </motion.div>
+
+          <motion.div {...fadeUp(0.4)} className="hero-phone" style={{ display: 'flex', alignItems: 'center', gap: '14px', marginTop: '24px' }}>
+            <div className="phone-ring" style={{ width: '44px', height: '44px', minWidth: '44px', borderRadius: '50%', background: 'linear-gradient(135deg,var(--orange),var(--fire))', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" /></svg>
+            </div>
+            <div>
+              <small style={{ display: 'block', fontSize: '10px', color: 'var(--dim)', letterSpacing: '2px', textTransform: 'uppercase', fontFamily: 'var(--fh)' }}>Call us 24/7</small>
+              <a href="tel:3015262926" style={{ fontFamily: 'var(--fh)', fontSize: '28px', fontWeight: 800, color: 'var(--white)', textDecoration: 'none', letterSpacing: '1px' }}>301 526 2926</a>
+            </div>
+          </motion.div>
+        </div>
       </div>
 
-      {/* Stats bar */}
+      {/* Stats — last in reading order on mobile; desktop stays bottom-centered */}
       <motion.div {...fadeUp(0.6)} className="hero-stats" style={{ position: 'absolute', bottom: '36px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '44px', zIndex: 2 }}>
         {Stats.map((s, i) => (
           <div key={i} style={{ textAlign: 'center' }}>
