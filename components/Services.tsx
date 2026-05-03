@@ -448,7 +448,7 @@ export default function Services() {
         <FadeIn delay={0.12}>
           <div style={{ display: 'flex', gap: '14px', marginTop: '44px', flexWrap: 'wrap' }}>
             {[
-              { label: 'Licensed & Insured', sub: 'Fully certified in Maryland', col: 'var(--ice)', bg: 'rgba(255,255,255,.02)', border: 'rgba(255,255,255,.05)' },
+              { label: 'Licensed & Insured', sub: 'DC, Maryland & Virginia', col: 'var(--ice)', bg: 'rgba(255,255,255,.02)', border: 'rgba(255,255,255,.05)' },
               { label: 'Quality Service', sub: '5-star rated by customers', col: 'var(--ice)', bg: 'rgba(255,255,255,.02)', border: 'rgba(255,255,255,.05)' },
               { label: 'Residential & Commercial', sub: 'All property types served', col: 'var(--orange)', bg: 'rgba(244,124,32,.08)', border: 'rgba(244,124,32,.22)' },
             ].map((b, i) => (

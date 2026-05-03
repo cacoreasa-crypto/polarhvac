@@ -26,7 +26,7 @@ export default function Footer() {
             style={{ width: 'auto', height: 'auto', maxWidth: 'min(200px, 42vw)', maxHeight: '100px', marginBottom: '18px', display: 'block', objectFit: 'contain' }}
           />
           <p style={{ fontSize: '13px', color: 'var(--dim)', lineHeight: 1.7, maxWidth: '270px' }}>
-            Polar HVAC Services LLC is your trusted heating and cooling partner in Bowie, Maryland and across the DMV area. Licensed, insured, and committed to your comfort year-round.
+            Polar HVAC Services LLC is your trusted heating and cooling partner across the DMV — Washington DC, Maryland, and Virginia. Licensed, insured, and committed to your comfort year-round.
           </p>
           {/* Socials */}
           <div style={{ display: 'flex', gap: '10px', marginTop: '22px' }}>
@@ -74,7 +74,7 @@ export default function Footer() {
             {[
               { label: '301 526 2926', href: 'tel:3015262926' },
               { label: 'polarhvacservicesllc.com', href: 'https://polarhvacservicesllc.com' },
-              { label: 'Bowie, MD 20715', href: '#contact' },
+              { label: 'DMV · DC · MD · VA', href: '#contact' },
               { label: 'Free Estimate', href: '#contact' },
             ].map(item => (
               <li key={item.label}>
@@ -98,7 +98,7 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '22px 48px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '14px', fontSize: '12px', color: 'rgba(168,184,216,.45)' }}>
-        <div>© 2026 <strong style={{ color: 'var(--ice)' }}>Polar HVAC Services LLC</strong> — Bowie, Maryland</div>
+        <div>© 2026 <strong style={{ color: 'var(--ice)' }}>Polar HVAC Services LLC</strong> — Serving DC, Maryland & Virginia</div>
         <div style={{ display: 'flex', gap: '20px' }}>
           <Link href="#" style={{ color: 'rgba(168,184,216,.45)', textDecoration: 'none' }}>Privacy Policy</Link>
           <Link href="#" style={{ color: 'rgba(168,184,216,.45)', textDecoration: 'none' }}>Terms of Service</Link>

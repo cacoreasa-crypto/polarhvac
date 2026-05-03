@@ -161,9 +161,9 @@ export const HeatingServices: ServiceItem[] = [
 
 export const FAQItems = [
   {
-    question: 'What areas do you serve in the DMV?',
+    question: 'What areas do you serve?',
     answer:
-      'We serve the entire DMV area including Bowie, Laurel, Greenbelt, College Park, Silver Spring, Hyattsville, Washington DC, and parts of Northern Virginia. If you\'re unsure, just give us a call!',
+      'We work throughout the DMV — Washington DC, Maryland, and Virginia — for residential and commercial customers. Call us with your address and we will confirm scheduling anywhere in the region.',
   },
   {
     question: 'Do you offer emergency HVAC service?',
@@ -171,9 +171,9 @@ export const FAQItems = [
       'Absolutely. We provide 24/7 emergency HVAC service because heating and cooling failures don\'t follow business hours. Call us any time at 301 526 2926 and we\'ll dispatch a technician as fast as possible.',
   },
   {
-    question: 'Are you licensed and insured in Maryland?',
+    question: 'Are you licensed and insured?',
     answer:
-      'Yes. Polar HVAC Services LLC is fully licensed and insured in the state of Maryland. We comply with all local codes and regulations, giving you complete peace of mind on every job.',
+      'Yes. Polar HVAC Services LLC is fully licensed and insured, and we follow applicable local codes and regulations everywhere we work across Washington DC, Maryland, and Virginia — so you have peace of mind on every job.',
   },
   {
     question: 'How often should I service my HVAC system?',
@@ -219,7 +219,7 @@ export const WhyPanels = [
     label: 'Why Polar HVAC',
     title: 'Always Fast.',
     titleHighlight: 'Always Ready.',
-    body: 'When your system fails, every minute matters. Our technicians are stationed throughout the DMV area and ready to respond 24 hours a day, 7 days a week — including holidays. Average response time under 2 hours.',
+    body: 'When your system fails, every minute matters. Our technicians cover Washington DC, Maryland, and Virginia and are ready to respond 24 hours a day, 7 days a week — including holidays. Average response time under 2 hours.',
     visual: 'Response time under 2 hours',
     iconType: 'clock' as const,
     imageSrc: '/scroll/jacksonpolohvac.png',
@@ -228,9 +228,9 @@ export const WhyPanels = [
     num: '02',
     label: 'Certified Technicians',
     title: 'Licensed',
-    titleHighlight: '& Insured in Maryland.',
-    body: 'Every Polar technician is EPA-certified, fully licensed by the state of Maryland, and carries comprehensive insurance. We train continuously on the latest HVAC systems so your equipment is always in expert hands.',
-    visual: 'EPA Certified · MD Licensed · Fully Insured',
+    titleHighlight: '& Insured.',
+    body: 'Every Polar technician is EPA-certified, properly licensed and insured for work across the DMV, and carries comprehensive coverage. We train continuously on the latest HVAC systems so your equipment is always in expert hands.',
+    visual: 'EPA Certified · Licensed & Insured · DMV-wide',
     iconType: 'shield' as const,
     imageSrc: '/scroll/scroll2.jpeg',
   },

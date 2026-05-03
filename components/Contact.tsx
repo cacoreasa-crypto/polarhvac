@@ -9,7 +9,7 @@ const ease = [0.22, 1, 0.36, 1] as const
 const contactItems = [
   { type: 'phone', label: 'Phone', value: '301 526 2926', href: 'tel:3015262926', sub: 'Available 24/7 for emergencies', iconColor: 'var(--orange)' },
   { type: 'web', label: 'Website', value: 'polarhvacservicesllc.com', href: 'https://polarhvacservicesllc.com', sub: '', iconColor: 'var(--ice)' },
-  { type: 'location', label: 'Service Area', value: 'Bowie, MD & DMV Region', href: '#contact', sub: 'Maryland · DC · Virginia', iconColor: 'var(--ice)' },
+  { type: 'location', label: 'Service Area', value: 'Full DMV — DC, MD & VA', href: '#contact', sub: 'Washington DC, Maryland & Virginia', iconColor: 'var(--ice)' },
   { type: 'clock', label: 'Hours', value: 'Mon – Sat: 7am – 8pm', href: '#contact', sub: 'Emergency service: 24/7', iconColor: 'var(--ice)' },
 ]
 

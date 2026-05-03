@@ -211,13 +211,13 @@ export default function Hero() {
           <div className="hero-intro">
             <motion.div {...fadeUp(0)} className="hero-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(26,111,212,.12)', border: '1px solid rgba(0,212,255,.25)', borderRadius: '100px', padding: '6px 16px', fontFamily: 'var(--fh)', fontSize: '12px', fontWeight: 600, color: 'var(--ice)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '20px' }}>
               <span className="dot-blink" style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--ice)', display: 'block' }} />
-              Serving Bowie, MD &amp; DMV Area
+              Serving the DMV — DC, Maryland &amp; Virginia
             </motion.div>
 
             <HeroTypewriterH1 />
 
             <motion.p {...fadeUp(0.2)} className="hero-sub" style={{ marginTop: '18px', fontSize: '17px', color: 'var(--dim)', lineHeight: 1.65, maxWidth: '480px' }}>
-              Professional HVAC installation, repair &amp; maintenance for residential &amp; commercial properties. Licensed, insured &amp; trusted across Maryland, Virginia &amp; DC.
+              Professional HVAC installation, repair &amp; maintenance for residential &amp; commercial properties throughout the DMV. Licensed, insured &amp; trusted across Washington DC, Maryland &amp; Virginia.
             </motion.p>
           </div>
 

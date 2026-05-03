@@ -28,7 +28,7 @@ export default function CtaStrip() {
             Need Emergency <span style={{ color: '#2a0f00' }}>HVAC Service?</span>
           </h2>
           <p style={{ marginTop: '10px', color: 'rgba(255,241,225,0.95)', fontSize: '16px' }}>
-            We&apos;re available 24/7. Call now for fast response across the DMV area.
+            We&apos;re available 24/7. Call now for fast response across Washington DC, Maryland, and Virginia.
           </p>
         </motion.div>
         <motion.div
